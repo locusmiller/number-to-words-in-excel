@@ -1,0 +1,883 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="google-site-verification" content="PLACEHOLDER_GSC_VERIFICATION_CODE" />
+    <meta name="robots" content="index, follow">
+    <meta name="googlebot" content="index, follow">
+    <meta name="bingbot" content="index, follow">
+    <title>How to Convert Numbers to Words in Excel (Step-by-Step Guide)</title>
+    <meta name="description" content="Learn how to convert numbers to words in Excel using VBA macro. Step-by-step guide with complete SpellNumber code, examples, and troubleshooting tips.">
+    <link rel="canonical" href="PLACEHOLDER_CANONICAL_URL" />
+    <meta name="author" content="PLACEHOLDER_AUTHOR_NAME">
+    <meta property="og:title" content="How to Convert Numbers to Words in Excel (Step-by-Step Guide)">
+    <meta property="og:description" content="Learn how to convert numbers to words in Excel using VBA macro. Step-by-step guide with complete SpellNumber code, examples, and troubleshooting tips.">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="PLACEHOLDER_CANONICAL_URL">
+    <meta property="og:locale" content="en_US">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="How to Convert Numbers to Words in Excel (Step-by-Step Guide)">
+    <meta name="twitter:description" content="Learn how to convert numbers to words in Excel using VBA macro. Step-by-step guide with complete SpellNumber code, examples, and troubleshooting tips.">
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "How to Convert Numbers to Words in Excel (Step-by-Step Guide)",
+        "description": "Learn how to convert numbers to words in Excel using VBA macro. Step-by-step guide with complete SpellNumber code, examples, and troubleshooting tips.",
+        "author": {
+            "@type": "Person",
+            "name": "PLACEHOLDER_AUTHOR_NAME"
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "PLACEHOLDER_SITE_NAME"
+        },
+        "datePublished": "PLACEHOLDER_PUBLISH_DATE",
+        "dateModified": "PLACEHOLDER_MODIFIED_DATE",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "PLACEHOLDER_CANONICAL_URL"
+        }
+    }
+    </script>
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+            {
+                "@type": "Question",
+                "name": "Does Excel have a built-in function to convert numbers to words?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "No, Microsoft Excel does not include a built-in function to convert numbers to words. You need to create a custom VBA macro called SpellNumber or use a third-party add-in to get this feature working in your spreadsheet."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Will the SpellNumber function work on Mac?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Yes, the SpellNumber VBA function works on Mac versions of Excel. However, some older Mac versions have limited VBA support. Excel for Mac 2016 and later versions fully support VBA macros including the SpellNumber function."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Can this VBA code handle Indian Rupees?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Yes, you can modify the SpellNumber VBA code to handle Indian Rupees. Change the currency labels from Dollars and Cents to Rupees and Paise inside the code. The number conversion logic stays the same."
+                }
+            }
+        ]
+    }
+    </script>
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "HowTo",
+        "name": "How to Convert Numbers to Words in Excel Using VBA",
+        "description": "Step-by-step instructions to add a SpellNumber function in Excel using VBA macro.",
+        "step": [
+            {
+                "@type": "HowToStep",
+                "position": 1,
+                "name": "Open your Excel workbook",
+                "text": "Open the Excel file where you want to convert numbers to words."
+            },
+            {
+                "@type": "HowToStep",
+                "position": 2,
+                "name": "Open VBA Editor",
+                "text": "Press Alt + F11 on your keyboard to open the Visual Basic for Applications editor."
+            },
+            {
+                "@type": "HowToStep",
+                "position": 3,
+                "name": "Insert a new module",
+                "text": "Click Insert in the menu bar and then select Module to create a new code module."
+            },
+            {
+                "@type": "HowToStep",
+                "position": 4,
+                "name": "Paste the SpellNumber code",
+                "text": "Copy the SpellNumber VBA code and paste it into the new module window."
+            },
+            {
+                "@type": "HowToStep",
+                "position": 5,
+                "name": "Save as macro-enabled workbook",
+                "text": "Save your file as .xlsm format (Excel Macro-Enabled Workbook) to preserve the macro."
+            },
+            {
+                "@type": "HowToStep",
+                "position": 6,
+                "name": "Use the SpellNumber function",
+                "text": "In any cell, type =SpellNumber(A1) where A1 contains the number you want to convert."
+            }
+        ]
+    }
+    </script>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.8;
+            color: #2d2d2d;
+            background-color: #f8f9fa;
+        }
+
+        .skip-link {
+            position: fixed;
+            top: 10px;
+            left: -300px;
+            background: #0d6e3f;
+            color: #ffffff;
+            padding: 10px 20px;
+            border-radius: 0 6px 6px 0;
+            z-index: 10000;
+            font-size: 14px;
+            text-decoration: none;
+            transition: left 0.3s ease;
+        }
+
+        .skip-link:focus {
+            left: 0;
+        }
+
+        .navbar {
+            background: #0b3d2e;
+            padding: 16px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .nav-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-logo {
+            color: #ffffff;
+            font-size: 20px;
+            font-weight: 700;
+            text-decoration: none;
+        }
+
+        .nav-logo span {
+            color: #66bb6a;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 24px;
+            list-style: none;
+            flex-wrap: wrap;
+        }
+
+        .nav-links a {
+            color: #c8d6c8;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            transition: color 0.2s ease;
+        }
+
+        .nav-links a:hover {
+            color: #66bb6a;
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 5px;
+        }
+
+        .hamburger span {
+            width: 26px;
+            height: 3px;
+            background: #ffffff;
+            border-radius: 3px;
+            transition: 0.3s;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, #0b3d2e 0%, #145a3e 50%, #1a7a52 100%);
+            padding: 60px 20px;
+            text-align: center;
+        }
+
+        .hero h1 {
+            color: #ffffff;
+            font-size: 34px;
+            font-weight: 800;
+            max-width: 820px;
+            margin: 0 auto 16px;
+            line-height: 1.3;
+        }
+
+        .hero p {
+            color: #b2d8c2;
+            font-size: 17px;
+            max-width: 650px;
+            margin: 0 auto;
+        }
+
+        .breadcrumb {
+            max-width: 900px;
+            margin: 16px auto;
+            padding: 0 20px;
+            font-size: 13px;
+            color: #757575;
+        }
+
+        .breadcrumb a {
+            color: #0d6e3f;
+            text-decoration: none;
+        }
+
+        .breadcrumb a:hover {
+            text-decoration: underline;
+        }
+
+        .toc {
+            max-width: 900px;
+            margin: 20px auto;
+            padding: 0 20px;
+        }
+
+        .toc-box {
+            background: #ffffff;
+            border: 1px solid #e0e0e0;
+            border-left: 4px solid #0d6e3f;
+            border-radius: 8px;
+            padding: 24px 28px;
+        }
+
+        .toc-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: #0b3d2e;
+            margin-bottom: 14px;
+        }
+
+        .toc-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .toc-list li {
+            margin-bottom: 8px;
+        }
+
+        .toc-list a {
+            color: #0d6e3f;
+            text-decoration: none;
+            font-size: 15px;
+            transition: color 0.2s;
+        }
+
+        .toc-list a:hover {
+            color: #094d2c;
+            text-decoration: underline;
+        }
+
+        .toc-list .sub-item {
+            padding-left: 20px;
+        }
+
+        .content-wrapper {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 30px 20px 60px;
+        }
+
+        .content-section {
+            background: #ffffff;
+            border-radius: 10px;
+            padding: 36px 32px;
+            margin-bottom: 28px;
+            box-shadow: 0 1px 6px rgba(0, 0, 0, 0.06);
+            border: 1px solid #eaeaea;
+        }
+
+        .content-section h2 {
+            font-size: 26px;
+            font-weight: 700;
+            color: #0b3d2e;
+            margin-bottom: 18px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #66bb6a;
+            display: inline-block;
+        }
+
+        .content-section h3 {
+            font-size: 21px;
+            font-weight: 600;
+            color: #145a3e;
+            margin: 24px 0 14px;
+        }
+
+        .content-section p {
+            font-size: 16px;
+            color: #3a3a3a;
+            margin-bottom: 16px;
+            line-height: 1.85;
+        }
+
+        .content-section strong {
+            color: #0b3d2e;
+        }
+
+        .styled-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
+        }
+
+        .styled-table thead {
+            background: #0b3d2e;
+        }
+
+        .styled-table thead th {
+            color: #ffffff;
+            padding: 14px 18px;
+            text-align: left;
+            font-size: 15px;
+            font-weight: 600;
+        }
+
+        .styled-table tbody td {
+            padding: 12px 18px;
+            font-size: 15px;
+            color: #3a3a3a;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .styled-table tbody tr:nth-child(even) {
+            background: #f2f9f5;
+        }
+
+        .styled-table tbody tr:hover {
+            background: #e0f2e9;
+        }
+
+        .steps-list {
+            padding-left: 24px;
+            margin: 16px 0;
+        }
+
+        .steps-list li {
+            font-size: 16px;
+            color: #3a3a3a;
+            margin-bottom: 12px;
+            line-height: 1.8;
+        }
+
+        .use-list {
+            list-style: disc;
+            padding-left: 24px;
+            margin: 16px 0;
+        }
+
+        .use-list li {
+            font-size: 16px;
+            color: #3a3a3a;
+            margin-bottom: 10px;
+            line-height: 1.8;
+        }
+
+        /* Code Block */
+        .code-block {
+            background: #1e1e1e;
+            color: #d4d4d4;
+            padding: 24px;
+            border-radius: 8px;
+            overflow-x: auto;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 13px;
+            line-height: 1.7;
+            margin: 20px 0;
+            border: 1px solid #333;
+        }
+
+        .code-label {
+            background: #0d6e3f;
+            color: #ffffff;
+            display: inline-block;
+            padding: 4px 14px;
+            border-radius: 4px 4px 0 0;
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+
+        .note-box {
+            background: #fff8e1;
+            border-left: 4px solid #f9a825;
+            padding: 16px 20px;
+            border-radius: 0 8px 8px 0;
+            margin: 20px 0;
+            font-size: 15px;
+            color: #5d4037;
+        }
+
+        .cta-box {
+            background: linear-gradient(135deg, #e8f5e9, #f1f8e9);
+            border: 2px solid #0d6e3f;
+            border-radius: 10px;
+            padding: 24px 28px;
+            margin: 24px 0;
+            text-align: center;
+        }
+
+        .cta-box p {
+            font-size: 16px;
+            color: #0b3d2e;
+            margin-bottom: 6px;
+        }
+
+        .cta-box a {
+            color: #0d6e3f;
+            font-weight: 700;
+            text-decoration: underline;
+            font-size: 17px;
+        }
+
+        .cta-box a:hover {
+            color: #094d2c;
+        }
+
+        .faq-item {
+            margin-bottom: 22px;
+            padding-bottom: 18px;
+            border-bottom: 1px solid #eeeeee;
+        }
+
+        .faq-item:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+            margin-bottom: 0;
+        }
+
+        .faq-question {
+            font-size: 17px;
+            font-weight: 700;
+            color: #0b3d2e;
+            margin-bottom: 8px;
+        }
+
+        .faq-answer {
+            font-size: 16px;
+            color: #3a3a3a;
+            line-height: 1.85;
+        }
+
+        .footer {
+            background: #0b3d2e;
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .footer-links {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            gap: 28px;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+        }
+
+        .footer-links a {
+            color: #a5d6a7;
+            text-decoration: none;
+            font-size: 14px;
+            transition: color 0.2s;
+        }
+
+        .footer-links a:hover {
+            color: #66bb6a;
+        }
+
+        .footer-copy {
+            color: #81c784;
+            font-size: 13px;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 26px;
+            }
+
+            .hero p {
+                font-size: 15px;
+            }
+
+            .content-section {
+                padding: 24px 18px;
+            }
+
+            .content-section h2 {
+                font-size: 22px;
+            }
+
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 56px;
+                left: 0;
+                right: 0;
+                background: #0b3d2e;
+                padding: 20px;
+                gap: 14px;
+                box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+
+            .styled-table thead th,
+            .styled-table tbody td {
+                padding: 10px 12px;
+                font-size: 13px;
+            }
+
+            .code-block {
+                font-size: 11px;
+                padding: 16px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 22px;
+            }
+
+            .hero {
+                padding: 40px 16px;
+            }
+
+            .content-section h2 {
+                font-size: 20px;
+            }
+
+            .footer-links {
+                flex-direction: column;
+                gap: 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <!-- Navigation -->
+    <nav class="navbar" aria-label="Main navigation">
+        <div class="nav-container">
+            <a href="#top" class="nav-logo"><span>Number</span>ToWords</a>
+            <div class="hamburger" onclick="document.querySelector('.nav-links').classList.toggle('active')" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#no-builtin">Why No Built-In?</a></li>
+                <li><a href="#vba-method">VBA Method</a></li>
+                <li><a href="#use-function">Using It</a></li>
+                <li><a href="#alternatives">Alternatives</a></li>
+                <li><a href="#faq">FAQ</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <header class="hero" id="top">
+        <h1>How to Convert Numbers to Words in Excel (Step-by-Step Guide)</h1>
+        <p>No built-in formula exists for this in Excel. But with a quick VBA trick, you can spell out any number in seconds.</p>
+    </header>
+
+    <!-- Breadcrumb -->
+    <div class="breadcrumb">
+        <a href="#top">Home</a> &rsaquo; <span>Numbers to Words in Excel</span>
+    </div>
+
+    <!-- Table of Contents -->
+    <div class="toc">
+        <div class="toc-box">
+            <div class="toc-title">📑 Table of Contents</div>
+            <ul class="toc-list">
+                <li><a href="#no-builtin">1. Why Excel Doesn't Have a Built-In Number to Words Function</a></li>
+                <li><a href="#vba-method">2. How to Convert Numbers to Words in Excel Using VBA</a></li>
+                <li class="sub-item"><a href="#vba-code">— Complete VBA Code for SpellNumber Function</a></li>
+                <li><a href="#use-function">3. How to Use the SpellNumber Function in Excel</a></li>
+                <li><a href="#alternatives">4. Alternative Methods to Convert Numbers to Words in Excel</a></li>
+                <li><a href="#faq">5. Frequently Asked Questions</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <main class="content-wrapper" id="main-content">
+
+        <!-- Intro -->
+        <section class="content-section">
+            <p>Microsoft Excel can sort millions of rows, build financial models, and run statistical analysis. But here's something funny — it can't spell out a number. Seriously. Type 500 into a cell, and there's no formula that returns "Five Hundred." It's been a missing feature for decades, and it still catches people off guard.</p>
+
+            <p>So how do you convert <strong>numbers to words in Excel</strong>? The answer is a VBA macro. By adding a small chunk of code called the SpellNumber function, you can turn any digit into its written English form. It takes under 5 minutes to set up, and it works on every version of Excel from 2007 onward — including Microsoft 365.</p>
+
+            <p>This guide walks you through the entire process. You'll get the exact code, step-by-step instructions, and fixes for common errors. Let's get right into it.</p>
+        </section>
+
+        <!-- Why No Built-In -->
+        <section class="content-section" id="no-builtin">
+            <h2>Why Excel Doesn't Have a Built-In Number to Words Function</h2>
+
+            <p><strong>Microsoft Excel does not include a native formula or function to convert numbers to words.</strong> Despite having over 500 built-in functions — from VLOOKUP to XLOOKUP, from SUMIFS to LAMBDA — this one has never made the cut.</p>
+
+            <p>Why not? Microsoft has never given a clear official reason. However, the likely answer comes down to language complexity. Spelling out numbers varies widely across languages. English alone has quirky rules — hyphens for twenty-one through ninety-nine, the "and" debate between British and American English, and different conventions for decimals and currency. Building a single function that handles all these variations across 100+ supported languages would be a big ask.</p>
+
+            <p>That said, Microsoft isn't completely ignoring the issue. Their official support page actually provides a VBA macro code for this exact purpose. They acknowledge that users need it, especially in financial and accounting workflows. They just haven't baked it into the formula bar yet.</p>
+
+            <p>So what are your options? There are basically three routes:</p>
+
+            <ul class="use-list">
+                <li><strong>VBA Macro</strong> — The most reliable and widely used method. Works offline and inside your spreadsheet.</li>
+                <li><strong>Third-party add-ins</strong> — Downloaded extensions that add this feature. Some are free, others are paid.</li>
+                <li><strong>Online converters</strong> — Convert the number on a website and paste the result back into Excel manually.</li>
+            </ul>
+
+            <p>Among these three, the VBA macro is the clear winner for anyone who works with Excel regularly. It's a one-time setup. Once you add the code, it stays in your workbook forever. And it works on Excel 2016, 2019, 2021, and Microsoft 365 — on both Windows and Mac.</p>
+
+            <p>Let's walk through how to set it up.</p>
+        </section>
+
+        <!-- VBA Method -->
+        <section class="content-section" id="vba-method">
+            <h2>How to Convert Numbers to Words in Excel Using VBA</h2>
+
+            <p><strong>The most reliable way to convert numbers to words in Excel is by creating a User Defined Function (UDF) through a VBA macro.</strong> Don't worry — you don't need to be a programmer. You're just copying and pasting a block of code. That's it.</p>
+
+            <p>Follow these 6 steps exactly:</p>
+
+            <ol class="steps-list">
+                <li><strong>Open your Excel workbook</strong> — This should be the file where you want the number-to-word conversion to work.</li>
+                <li><strong>Press Alt + F11</strong> — This keyboard shortcut opens the Visual Basic for Applications (VBA) editor. On Mac, press Fn + Option + F11.</li>
+                <li><strong>Insert a new module</strong> — In the VBA editor menu, click "Insert" and then select "Module." A blank white window will appear on the right side.</li>
+                <li><strong>Paste the SpellNumber code</strong> — Copy the full VBA code provided below and paste it into that blank module window.</li>
+                <li><strong>Save your file as .xlsm</strong> — This is very important. Go to File > Save As and choose "Excel Macro-Enabled Workbook (.xlsm)" as the file type. If you save it as a regular .xlsx file, the macro won't work.</li>
+                <li><strong>Use the function</strong> — Go back to your spreadsheet. In any cell, type <strong>=SpellNumber(A1)</strong> where A1 contains the number you want to spell out. Hit Enter. Done.</li>
+            </ol>
+
+            <div class="note-box">
+                <strong>⚠️ Important:</strong> When you open the file next time, Excel may ask you to "Enable Macros." Always click yes — otherwise the SpellNumber function won't run and you'll see a #NAME? error.
+            </div>
+
+            <!-- Nested H3 - VBA Code -->
+            <div id="vba-code">
+                <h3>Complete VBA Code for SpellNumber Function</h3>
+
+                <p><strong>Below is the full VBA code recommended by Microsoft's official support documentation.</strong> This code handles whole numbers up to 999,999,999 and decimals up to two places.</p>
+
+                <span class="code-label">VBA CODE</span>
+                <div class="code-block">
+Function SpellNumber(ByVal MyNumber)<br>
+&nbsp;&nbsp;Dim Dollars, Cents, Temp<br>
+&nbsp;&nbsp;Dim DecimalPlace, Count<br>
+&nbsp;&nbsp;ReDim Place(9) As String<br>
+&nbsp;&nbsp;Place(2) = " Thousand "<br>
+&nbsp;&nbsp;Place(3) = " Million "<br>
+&nbsp;&nbsp;Place(4) = " Billion "<br>
+&nbsp;&nbsp;Place(5) = " Trillion "<br>
+&nbsp;&nbsp;MyNumber = Trim(Str(MyNumber))<br>
+&nbsp;&nbsp;DecimalPlace = InStr(MyNumber, ".")<br>
+&nbsp;&nbsp;If DecimalPlace > 0 Then<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Cents = GetTens(Left(Mid(MyNumber, DecimalPlace + 1) & "00", 2))<br>
+&nbsp;&nbsp;&nbsp;&nbsp;MyNumber = Trim(Left(MyNumber, DecimalPlace - 1))<br>
+&nbsp;&nbsp;End If<br>
+&nbsp;&nbsp;Count = 1<br>
+&nbsp;&nbsp;Do While MyNumber &lt;&gt; ""<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Temp = GetHundreds(Right(MyNumber, 3))<br>
+&nbsp;&nbsp;&nbsp;&nbsp;If Temp &lt;&gt; "" Then Dollars = Temp & Place(Count) & Dollars<br>
+&nbsp;&nbsp;&nbsp;&nbsp;If Len(MyNumber) > 3 Then<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;MyNumber = Left(MyNumber, Len(MyNumber) - 3)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Else<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;MyNumber = ""<br>
+&nbsp;&nbsp;&nbsp;&nbsp;End If<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Count = Count + 1<br>
+&nbsp;&nbsp;Loop<br>
+&nbsp;&nbsp;Select Case Dollars<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Case ""<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Dollars = "No Dollars"<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Case "One"<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Dollars = "One Dollar"<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Case Else<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Dollars = Dollars & " Dollars"<br>
+&nbsp;&nbsp;End Select<br>
+&nbsp;&nbsp;Select Case Cents<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Case ""<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Cents = " and No Cents"<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Case "One"<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Cents = " and One Cent"<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Case Else<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Cents = " and " & Cents & " Cents"<br>
+&nbsp;&nbsp;End Select<br>
+&nbsp;&nbsp;SpellNumber = Dollars & Cents<br>
+End Function
+                </div>
+
+                <p>This code also requires two helper functions — <strong>GetHundreds</strong> and <strong>GetTens</strong> — which handle the individual place values. You'll find the complete helper code on Microsoft's official support page for the SpellNumber function. Copy all three functions into the same module for everything to work correctly.</p>
+            </div>
+        </section>
+
+        <!-- How to Use -->
+        <section class="content-section" id="use-function">
+            <h2>How to Use the SpellNumber Function in Excel</h2>
+
+            <p><strong>After adding the VBA code, type =SpellNumber(A1) in any cell to convert a number to its word form.</strong> Replace A1 with whatever cell holds your number. The result appears instantly.</p>
+
+            <p>Here are some practical examples:</p>
+
+            <table class="styled-table">
+                <thead>
+                    <tr>
+                        <th>Cell A1 Value</th>
+                        <th>Formula</th>
+                        <th>Result</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>500</td><td>=SpellNumber(A1)</td><td>Five Hundred Dollars and No Cents</td></tr>
+                    <tr><td>1250.75</td><td>=SpellNumber(A1)</td><td>One Thousand Two Hundred Fifty Dollars and Seventy Five Cents</td></tr>
+                    <tr><td>99</td><td>=SpellNumber(A1)</td><td>Ninety Nine Dollars and No Cents</td></tr>
+                    <tr><td>1000000</td><td>=SpellNumber(A1)</td><td>One Million Dollars and No Cents</td></tr>
+                </tbody>
+            </table>
+
+            <p>Notice that the default code outputs results in a currency format — Dollars and Cents. If you want a plain number without currency labels, you'll need to tweak the code. Specifically, remove the lines that append "Dollars" and "Cents" and replace them with empty strings.</p>
+
+            <p>Want to use Indian Rupees instead? Just change "Dollars" to "Rupees" and "Cents" to "Paise" inside the VBA code. The conversion logic stays exactly the same. Similarly, you can swap in Pounds and Pence for British currency, or Euros and Cents for European formats.</p>
+
+            <p>Now, let's cover the two most common errors people run into:</p>
+
+            <ul class="use-list">
+                <li><strong>#NAME? error</strong> — This means Excel doesn't recognize the function. Either the macro isn't enabled, or you saved the file as .xlsx instead of .xlsm. Reopen the file, enable macros, and make sure the file format is correct.</li>
+                <li><strong>#VALUE! error</strong> — This usually means the cell you're referencing contains text instead of a number. Make sure the source cell has a numeric value only.</li>
+            </ul>
+
+            <p>One more thing — the SpellNumber function doesn't update automatically if you change the VBA code. After making edits, press Ctrl + Alt + F9 to force Excel to recalculate all formulas. That'll refresh the output across your entire workbook.</p>
+        </section>
+
+        <!-- Alternatives -->
+        <section class="content-section" id="alternatives">
+            <h2>Alternative Methods to Convert Numbers to Words in Excel</h2>
+
+            <p><strong>Besides VBA, there are two other ways to get numbers spelled out in your Excel spreadsheet.</strong> Each has its own trade-offs, so pick the one that fits your situation best.</p>
+
+            <p><strong>Method 1: Third-Party Add-Ins</strong></p>
+            <p>Several add-ins are available through the Microsoft Office Add-Ins store. Some popular ones include "Number to Words" and "Spell Number." After installing, these add-ins typically work like regular functions — just type the formula and get results. The downside? Some are paid, and a few don't support currency formatting or large numbers beyond millions.</p>
+
+            <p><strong>Method 2: Online Converters (Copy-Paste)</strong></p>
+            <p>If you only need to convert a handful of numbers, an online <a href="PLACEHOLDER_CANONICAL_URL"><strong>number to words converter</strong></a> works fine. Type the number on the website, copy the result, and paste it into your Excel cell. It's manual, so it doesn't scale well for large datasets. But for quick one-off tasks, it gets the job done.</p>
+
+            <p>Here's a quick comparison of all three methods:</p>
+
+            <table class="styled-table">
+                <thead>
+                    <tr>
+                        <th>Method</th>
+                        <th>Setup Time</th>
+                        <th>Best For</th>
+                        <th>Cost</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>VBA Macro</td><td>5 minutes</td><td>Regular Excel users</td><td>Free</td></tr>
+                    <tr><td>Third-Party Add-In</td><td>2 minutes</td><td>Non-technical users</td><td>Free / Paid</td></tr>
+                    <tr><td>Online Converter</td><td>0 minutes</td><td>One-off conversions</td><td>Free</td></tr>
+                </tbody>
+            </table>
+
+            <p>For anyone who works in Excel daily — accountants, bookkeepers, financial analysts — the VBA method is the strongest long-term solution. Set it up once, and it works forever inside that workbook.</p>
+        </section>
+
+        <!-- CTA -->
+        <div class="cta-box">
+            <p>Don't want to use VBA? Convert numbers instantly online.</p>
+            <a href="PLACEHOLDER_CANONICAL_URL">Try our free Number to Words Converter →</a>
+        </div>
+
+        <!-- FAQ -->
+        <section class="content-section" id="faq">
+            <h2>Frequently Asked Questions</h2>
+
+            <div class="faq-item">
+                <p class="faq-question">Does Excel have a built-in function to convert numbers to words?</p>
+                <p class="faq-answer"><strong>No, Microsoft Excel does not have a built-in function for this.</strong> Despite having hundreds of native formulas, number-to-word conversion isn't one of them. The official workaround provided by Microsoft is a VBA macro called SpellNumber. You add it once to your workbook, and it works like any other formula from that point forward.</p>
+            </div>
+
+            <div class="faq-item">
+                <p class="faq-question">Will the SpellNumber function work on Mac?</p>
+                <p class="faq-answer"><strong>Yes, the SpellNumber VBA function works on Mac versions of Excel.</strong> However, some older Mac editions had limited VBA support. If you're running Excel for Mac 2016 or later, you'll have full macro compatibility. To open the VBA editor on Mac, use the shortcut Fn + Option + F11 instead of Alt + F11.</p>
+            </div>
+
+            <div class="faq-item">
+                <p class="faq-question">Can this VBA code handle Indian Rupees?</p>
+                <p class="faq-answer"><strong>Yes, you can modify the code to handle Indian Rupees with a small edit.</strong> Inside the VBA code, find every instance of "Dollars" and replace it with "Rupees." Then find "Cents" and replace it with "Paise." The number conversion logic remains identical — only the currency labels change. Save the file and your function will output amounts in Rupees format.</p>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <ul class="footer-links">
+                <li><a href="#top">Home</a></li>
+                <li><a href="#no-builtin">Why No Built-In?</a></li>
+                <li><a href="#vba-method">VBA Method</a></li>
+                <li><a href="#use-function">Using It</a></li>
+                <li><a href="#alternatives">Alternatives</a></li>
+                <li><a href="#faq">FAQ</a></li>
+            </ul>
+            <p class="footer-copy">&copy; 2025 PLACEHOLDER_SITE_NAME. All rights reserved.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
